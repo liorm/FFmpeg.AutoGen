@@ -101,8 +101,9 @@ class GeneratorBase:
 
 class LibraryGenerator(GeneratorBase):
     def __init__(self, name):
-        p = re.compile(r'(?:lib)?(\w+)[.-](\d+)')
+        p = re.compile(r'(?:lib)?(\w+)[.-](?:so\.)(\d+)')
         m = p.match(name)
+        print "MOD: ", m
         libname = m.group(1)
         version = m.group(2)
         self.id = self.escape_id_if_needed("%s_LIBRARY" % libname.upper())
@@ -481,9 +482,9 @@ class Options:
         libraries = ['avutil-52', 'avcodec-55', 'avformat-55', 'swresample-0',
                      'swscale-2', 'postproc-52', 'avfilter-4', 'avdevice-55']
     else:
-        compile_libdirs = ['/opt/local/lib']
-        libraries = ['libavutil.52', 'libavcodec.55', 'libavformat.55', 'libswresample.0',
-                     'libswscale.2', 'libpostproc.52', 'libavfilter.4', 'libavdevice.55']
+        compile_libdirs = ['/usr/lib']
+        libraries = ['libavutil.so.54', 'libavcodec.so.56', 'libavformat.so.56', 'libswresample.so.1',
+                     'libswscale.so.3', 'libpostproc.so.53', 'libavfilter.so.5', 'libavdevice.so.56']
 
     show_all_errors = True
     show_long_errors = True
